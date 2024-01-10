@@ -3,7 +3,6 @@ package com.luizreis.ecommerce.infrastructure.repositories.category;
 import com.luizreis.ecommerce.adapters.category.CategoryExistsByNameAdapter;
 import com.luizreis.ecommerce.adapters.category.CreateCategoryAdapter;
 import com.luizreis.ecommerce.core.domain.Category;
-import com.luizreis.ecommerce.infrastructure.entities.CategoryEntity;
 import com.luizreis.ecommerce.infrastructure.mappers.CategoryMapper;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +23,9 @@ public class CategoryRepository implements CreateCategoryAdapter, CategoryExists
     }
 
     @Override
-    public void create(Category category) {
+    public boolean create(Category category) {
         repository.save(mapper.modelToEntity(category));
+        return true;
+
     }
 }

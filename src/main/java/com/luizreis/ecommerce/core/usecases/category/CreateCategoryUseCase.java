@@ -5,5 +5,5 @@ import com.luizreis.ecommerce.core.domain.exceptions.CategoryAlreadyExistsExcept
 
 public interface CreateCategoryUseCase {
 
-    void create(Category category) throws CategoryAlreadyExistsException;
+    boolean create(Category category) throws CategoryAlreadyExistsException;
 }

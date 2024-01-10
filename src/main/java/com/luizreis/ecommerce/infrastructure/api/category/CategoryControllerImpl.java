@@ -21,8 +21,12 @@ public class CategoryControllerImpl implements CategoryController{
 
     @Override
     public ResponseEntity<BaseResponse> create(CategoryRequest request) throws CategoryAlreadyExistsException {
-        createCategoryUseCase.create(mapper.requestToModel(request));
-        BaseResponse response = new BaseResponse(201, "Category created");
-        return ResponseEntity.status(201).body(response);
+        boolean result = createCategoryUseCase.create(mapper.requestToModel(request));
+
+        int status = result ? 201 : 400;
+        String message = result ? "Category created" : "An error occurred saving the entity";
+
+        BaseResponse response = new BaseResponse(status, message);
+        return ResponseEntity.status(status).body(response);
     }
 }

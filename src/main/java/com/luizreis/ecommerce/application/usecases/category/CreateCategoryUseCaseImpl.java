@@ -17,9 +17,9 @@ public class CreateCategoryUseCaseImpl implements CreateCategoryUseCase {
     }
 
     @Override
-    public void create(Category category) throws CategoryAlreadyExistsException {
+    public boolean create(Category category) throws CategoryAlreadyExistsException {
         if(categoryExistsByNameAdapter.existsByName(category.getName())) throw new CategoryAlreadyExistsException("Category already exists");
 
-        createCategoryAdapter.create(category);
+        return createCategoryAdapter.create(category);
     }
 }
