@@ -9,20 +9,23 @@ public class Product {
     private String name;
     private String description;
     private Double price;
+    private Category category;
     private Instant createdAt;
 
     public Product() {
     }
-    public Product(Long id, String name, String description, Double price, Instant createdAt) {
+    public Product(Long id, String name, String description, Category category, Double price, Instant createdAt) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.createdAt = createdAt;
+        this.category = category;
     }
 
-    public Product(String name, String description, Double price) {
+    public Product(String name, Category category, String description, Double price) {
         this.name = name;
+        this.category = category;
         this.description = description;
         this.price = price;
         this.createdAt = Instant.now();
@@ -66,6 +69,14 @@ public class Product {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
