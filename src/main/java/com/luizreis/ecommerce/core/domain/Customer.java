@@ -10,29 +10,23 @@ public class Customer {
     private String fullName;
     private String email;
     private String phoneNumber;
-    private String username;
-    private String password;
     private Instant createdAt;
     private Address address;
     public Customer() {
     }
 
-    public Customer(UUID id, String fullName, String email, String phoneNumber, String username, String password, Instant createdAt) {
+    public Customer(UUID id, String fullName, String email, String phoneNumber, Instant createdAt) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.username = username;
-        this.password = password;
         this.createdAt = createdAt;
     }
 
-    public Customer(String fullName, String email, String phoneNumber, String username, String password) {
+    public Customer(String fullName, String email, String phoneNumber) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.username = username;
-        this.password = password;
         this.createdAt = Instant.now();
     }
 
@@ -68,21 +62,6 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public Instant getCreatedAt() {
         return createdAt;
