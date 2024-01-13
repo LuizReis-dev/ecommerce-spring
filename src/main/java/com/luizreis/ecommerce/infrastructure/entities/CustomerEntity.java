@@ -21,6 +21,9 @@ public class CustomerEntity {
     @JoinColumn(name = "address_id")
     private AddressEntity address;
 
+    @OneToOne(mappedBy = "customer")
+    private UserEntity user;
+
     public CustomerEntity() {
     }
 
@@ -87,6 +90,14 @@ public class CustomerEntity {
 
     public void setAddress(AddressEntity address) {
         this.address = address;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
     @Override
