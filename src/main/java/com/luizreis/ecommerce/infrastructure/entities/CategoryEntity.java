@@ -2,6 +2,8 @@ package com.luizreis.ecommerce.infrastructure.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,7 +15,8 @@ public class CategoryEntity {
     private Long id;
     private String name;
     private String description;
-
+    @OneToMany(mappedBy = "category")
+    private final List<ProductEntity> products = new ArrayList<>();
     public CategoryEntity() {
     }
 
@@ -45,6 +48,10 @@ public class CategoryEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<ProductEntity> getProducts() {
+        return products;
     }
 
     @Override
