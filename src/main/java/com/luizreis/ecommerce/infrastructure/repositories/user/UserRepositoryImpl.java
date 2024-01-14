@@ -23,4 +23,9 @@ public class UserRepositoryImpl implements UserRepository{
     public Optional<UserEntity> findById(Long id) {
         return jpaUserRepository.findById(id);
     }
+
+    @Override
+    public UserEntity create(UserEntity entity) {
+        return jpaUserRepository.save(entity);
+    }
 }

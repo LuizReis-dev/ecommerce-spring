@@ -8,4 +8,6 @@ public interface UserRepository {
     Optional<UserEntity> findByEmail(String email);
 
     Optional<UserEntity> findById(Long id);
+
+    UserEntity create(UserEntity entity);
 }
