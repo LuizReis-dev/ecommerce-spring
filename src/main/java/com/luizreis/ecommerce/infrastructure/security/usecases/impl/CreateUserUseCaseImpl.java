@@ -5,12 +5,16 @@ import com.luizreis.ecommerce.core.domain.exceptions.CustomerAlreadyExistsExcept
 import com.luizreis.ecommerce.core.usecases.customer.CreateCustomerUseCase;
 import com.luizreis.ecommerce.infrastructure.api.dtos.SignupRequest;
 import com.luizreis.ecommerce.infrastructure.api.dtos.TokenResponse;
+import com.luizreis.ecommerce.infrastructure.entities.CustomerEntity;
 import com.luizreis.ecommerce.infrastructure.entities.Role;
 import com.luizreis.ecommerce.infrastructure.entities.UserEntity;
 import com.luizreis.ecommerce.infrastructure.mappers.CustomerMapper;
 import com.luizreis.ecommerce.infrastructure.repositories.user.UserRepository;
 import com.luizreis.ecommerce.infrastructure.security.JwtService;
 import com.luizreis.ecommerce.infrastructure.security.usecases.CreateUserUseCase;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -22,16 +26,19 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     private final CustomerMapper customerMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final EntityManager entityManager;
 
-    public CreateUserUseCaseImpl(CreateCustomerUseCase createCustomerUseCase, UserRepository repository, CustomerMapper customerMapper, PasswordEncoder passwordEncoder, JwtService jwtService) {
+    public CreateUserUseCaseImpl(CreateCustomerUseCase createCustomerUseCase, UserRepository repository, CustomerMapper customerMapper, PasswordEncoder passwordEncoder, JwtService jwtService, EntityManager entityManager) {
         this.createCustomerUseCase = createCustomerUseCase;
         this.repository = repository;
         this.customerMapper = customerMapper;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
+        this.entityManager = entityManager;
     }
 
     @Override
+    @Transactional
     public TokenResponse create(SignupRequest request) throws CustomerAlreadyExistsException {
         Customer customer = new Customer();
         customer.setEmail(request.getEmail());

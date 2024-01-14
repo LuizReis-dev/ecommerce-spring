@@ -13,11 +13,11 @@ public class CustomerMapperImpl implements CustomerMapper {
 
     @Override
     public CustomerEntity modelToEntity(Customer customer) {
-        return new CustomerEntity(customer.getFullName(), customer.getEmail(), customer.getPhoneNumber(),customer.getCreatedAt(), null);
+        return new CustomerEntity(customer.getId(),customer.getFullName(), customer.getEmail(), customer.getPhoneNumber(),customer.getCreatedAt(), null);
     }
 
     @Override
     public Customer entityToModel(CustomerEntity entity) {
-        return new Customer(entity.getFullName(), entity.getEmail(), entity.getPhoneNumber());
+        return new Customer(entity.getId(), entity.getFullName(), entity.getEmail(), entity.getPhoneNumber(), entity.getCreatedAt());
     }
 }

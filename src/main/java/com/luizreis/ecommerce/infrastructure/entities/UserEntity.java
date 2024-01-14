@@ -18,9 +18,12 @@ public class UserEntity implements UserDetails {
     private Long id;
     private String email;
     private String password;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "customer_id")
     private CustomerEntity customer;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Role role;
 
     public UserEntity() {
