@@ -5,5 +5,5 @@ import com.luizreis.ecommerce.core.domain.exceptions.CustomerAlreadyExistsExcept
 
 public interface CreateCustomerUseCase {
 
-    boolean create(Customer customer) throws CustomerAlreadyExistsException;
+    Customer create(Customer customer) throws CustomerAlreadyExistsException;
 }

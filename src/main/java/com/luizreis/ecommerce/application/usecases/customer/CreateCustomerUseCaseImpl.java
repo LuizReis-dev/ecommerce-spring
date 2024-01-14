@@ -17,7 +17,7 @@ public class CreateCustomerUseCaseImpl implements CreateCustomerUseCase {
     }
 
     @Override
-    public boolean create(Customer customer) throws CustomerAlreadyExistsException {
+    public Customer create(Customer customer) throws CustomerAlreadyExistsException {
         if(customerExistsByEmailAdapter.existsByEmail(customer.getEmail()))
             throw new CustomerAlreadyExistsException("Customer already exists!");
 
