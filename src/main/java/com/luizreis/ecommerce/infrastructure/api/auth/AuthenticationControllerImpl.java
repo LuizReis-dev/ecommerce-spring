@@ -10,12 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class AuthenticationResource implements AuthenticationController{
+public class AuthenticationControllerImpl implements AuthenticationController{
 
     private final CreateUserUseCase createUserUseCase;
     private final SignInUseCase signInUseCase;
 
-    public AuthenticationResource(CreateUserUseCase createUserUseCase, SignInUseCase signInUseCase) {
+    public AuthenticationControllerImpl(CreateUserUseCase createUserUseCase, SignInUseCase signInUseCase) {
         this.createUserUseCase = createUserUseCase;
         this.signInUseCase = signInUseCase;
     }
