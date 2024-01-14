@@ -5,6 +5,7 @@ import com.luizreis.ecommerce.infrastructure.api.dtos.BaseResponse;
 import com.luizreis.ecommerce.infrastructure.api.dtos.CategoryRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,5 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 public interface CategoryController {
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<BaseResponse> create(@Valid @RequestBody CategoryRequest request) throws CategoryAlreadyExistsException;
 }
