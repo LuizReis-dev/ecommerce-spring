@@ -1,0 +1,33 @@
+INSERT INTO tb_category (name, description) VALUES ('Eletrodomésticos', 'Produtos para casa e cozinha');
+INSERT INTO tb_category (name, description) VALUES ('Eletrônicos', 'Dispositivos eletrônicos e gadgets');
+INSERT INTO tb_category (name, description) VALUES ('Moda', 'Roupas e acessórios');
+INSERT INTO tb_category (name, description) VALUES ('Móveis', 'Móveis para casa e escritório');
+INSERT INTO tb_category (name, description) VALUES ('Esportes', 'Artigos esportivos e atividades ao ar livre');
+INSERT INTO tb_category (name, description) VALUES ('Beleza', 'Produtos de cuidados pessoais e beleza');
+INSERT INTO tb_category (name, description) VALUES ('Livros', 'Livros de diversas categorias');
+INSERT INTO tb_category (name, description) VALUES ('Brinquedos', 'Brinquedos e jogos para todas as idades');
+
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Smart TV 4K', 'TV com resolução 4K e tecnologia avançada', 699.99, 1, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Forno Elétrico', 'Forno para assar e preparar alimentos de forma eficiente', 129.99, 1, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Fone de Ouvido Bluetooth', 'Fone de ouvido sem fio com qualidade de som excepcional', 79.99, 2, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Notebook Ultrafino', 'Notebook leve e potente para trabalho e entretenimento', 999.99, 2, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Vestido de Festa', 'Vestido elegante para ocasiões especiais', 69.99, 3, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Sapato Social Masculino', 'Sapato de couro para eventos formais', 59.99, 3, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Mesa de Jantar Moderna', 'Mesa elegante para refeições em família', 349.99, 4, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Cadeira Ergonômica', 'Cadeira confortável para longas horas de trabalho', 149.99, 4, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Bicicleta de Montanha', 'Bicicleta resistente para trilhas e aventuras', 299.99, 5, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Raquete de Tênis Profissional', 'Raquete de alto desempenho para jogadores avançados', 89.99, 5, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Kit de Maquiagem Luxo', 'Kit completo de maquiagem de luxo', 129.99, 6, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Perfume Importado', 'Fragrância exclusiva para uso diário', 49.99, 6, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Romance Clássico', 'Livro romântico que atravessa gerações', 24.99, 7, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Livro de Ficção Científica', 'Aventura fascinante em um mundo futurista', 27.99, 7, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Quebra-Cabeça 1000 Peças', 'Desafio divertido para toda a família', 19.99, 8, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Jogo de Tabuleiro Estratégico', 'Diversão garantida para grupos de amigos', 34.99, 8, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Máquina de Café Expresso', 'Prepara café expresso com qualidade profissional', 179.99, 1, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Ventilador de Torre', 'Ventilador silencioso para dias quentes', 44.99, 1, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Relógio Elegante', 'Relógio sofisticado para ocasiões especiais', 129.99, 3, NOW());
+INSERT INTO tb_product (name, description, price, category_id, created_at) VALUES ('Jogo de Panelas Antiaderentes', 'Panelas de alta qualidade para culinária prática', 89.99, 1, NOW());
+
+INSERT INTO tb_customer (id,email, full_name, phone_number, created_at) VALUES ('be8e2202-9389-4b87-bc43-1fe99d6ac056', 'luiz@gmail.com', 'Luiz Reis Batista', '21988382114', NOW());
+INSERT INTO tb_user(customer_id, email, password, role) VALUES('be8e2202-9389-4b87-bc43-1fe99d6ac056', 'luiz@gmail.com', '$2a$10$tj8dBcNvsLpODqIg66gmU.VhTy/1wqJJf.CLxApNOMkj3S9FB0c.u', 'ROLE_USER');
+INSERT INTO tb_user(email, password, role) VALUES('fernando@gmail.com', '$2a$10$tj8dBcNvsLpODqIg66gmU.VhTy/1wqJJf.CLxApNOMkj3S9FB0c.u', 'ROLE_ADMIN');
