@@ -39,4 +39,22 @@ public class ProductMapperImpl implements ProductMapper {
         return product;
 
     }
+
+    @Override
+    public Product entityToModel(ProductEntity entity) {
+        Product product = new Product();
+        product.setId(entity.getId());
+        product.setName(entity.getName());
+        product.setDescription(entity.getDescription());
+        product.setPrice(entity.getPrice());
+        product.setCreatedAt(entity.getCreatedAt());
+
+        Category category = new Category();
+        category.setId(entity.getCategory().getId());
+        category.setName(entity.getCategory().getName());
+        category.setDescription(entity.getCategory().getDescription());
+        product.setCategory(category);
+
+        return product;
+    }
 }

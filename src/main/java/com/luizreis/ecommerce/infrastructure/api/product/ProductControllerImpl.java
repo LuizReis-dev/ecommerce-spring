@@ -1,22 +1,28 @@
 package com.luizreis.ecommerce.infrastructure.api.product;
 
+import com.luizreis.ecommerce.core.domain.Product;
 import com.luizreis.ecommerce.core.domain.exceptions.CategoryDoesntExistsException;
 import com.luizreis.ecommerce.core.domain.exceptions.PriceMustBePositiveException;
 import com.luizreis.ecommerce.core.usecases.product.CreateProductUseCase;
+import com.luizreis.ecommerce.core.usecases.product.GetAllProductsUseCase;
 import com.luizreis.ecommerce.infrastructure.api.dtos.BaseResponse;
 import com.luizreis.ecommerce.infrastructure.api.dtos.ProductRequest;
 import com.luizreis.ecommerce.infrastructure.mappers.ProductMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 @Controller
 public class ProductControllerImpl implements ProductController{
 
     private final CreateProductUseCase createProductUseCase;
+    private final GetAllProductsUseCase getAllProductsUseCase;
     private final ProductMapper mapper;
 
-    public ProductControllerImpl(CreateProductUseCase createProductUseCase, ProductMapper mapper) {
+    public ProductControllerImpl(CreateProductUseCase createProductUseCase, GetAllProductsUseCase getAllProductsUseCase, ProductMapper mapper) {
         this.createProductUseCase = createProductUseCase;
+        this.getAllProductsUseCase = getAllProductsUseCase;
         this.mapper = mapper;
     }
 
@@ -29,5 +35,10 @@ public class ProductControllerImpl implements ProductController{
 
         BaseResponse response = new BaseResponse(status, message);
         return ResponseEntity.status(status).body(response);
+    }
+
+    @Override
+    public ResponseEntity<List<Product>> getAll() {
+        return ResponseEntity.ok(getAllProductsUseCase.getAll());
     }
 }

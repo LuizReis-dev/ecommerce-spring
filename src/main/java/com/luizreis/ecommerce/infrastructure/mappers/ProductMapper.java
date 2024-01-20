@@ -8,4 +8,5 @@ public interface ProductMapper {
 
     ProductEntity modelToEntity(Product product);
     Product requestToModel(ProductRequest request);
+    Product entityToModel(ProductEntity entity);
 }
