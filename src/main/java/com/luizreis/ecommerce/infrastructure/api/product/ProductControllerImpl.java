@@ -5,6 +5,7 @@ import com.luizreis.ecommerce.core.domain.exceptions.CategoryDoesntExistsExcepti
 import com.luizreis.ecommerce.core.domain.exceptions.PriceMustBePositiveException;
 import com.luizreis.ecommerce.core.usecases.product.CreateProductUseCase;
 import com.luizreis.ecommerce.core.usecases.product.GetAllProductsUseCase;
+import com.luizreis.ecommerce.core.usecases.product.GetProductsByCategoryIdUseCase;
 import com.luizreis.ecommerce.infrastructure.api.dtos.BaseResponse;
 import com.luizreis.ecommerce.infrastructure.api.dtos.ProductRequest;
 import com.luizreis.ecommerce.infrastructure.mappers.ProductMapper;
@@ -18,11 +19,13 @@ public class ProductControllerImpl implements ProductController{
 
     private final CreateProductUseCase createProductUseCase;
     private final GetAllProductsUseCase getAllProductsUseCase;
+    private final GetProductsByCategoryIdUseCase getProductsByCategoryIdUseCase;
     private final ProductMapper mapper;
 
-    public ProductControllerImpl(CreateProductUseCase createProductUseCase, GetAllProductsUseCase getAllProductsUseCase, ProductMapper mapper) {
+    public ProductControllerImpl(CreateProductUseCase createProductUseCase, GetAllProductsUseCase getAllProductsUseCase, GetProductsByCategoryIdUseCase getProductsByCategoryIdUseCase, ProductMapper mapper) {
         this.createProductUseCase = createProductUseCase;
         this.getAllProductsUseCase = getAllProductsUseCase;
+        this.getProductsByCategoryIdUseCase = getProductsByCategoryIdUseCase;
         this.mapper = mapper;
     }
 
@@ -40,5 +43,10 @@ public class ProductControllerImpl implements ProductController{
     @Override
     public ResponseEntity<List<Product>> getAll() {
         return ResponseEntity.ok(getAllProductsUseCase.getAll());
+    }
+
+    @Override
+    public ResponseEntity<List<Product>> getAllByCategoryID(Long categoryId) {
+        return ResponseEntity.ok(getProductsByCategoryIdUseCase.getByCategory(categoryId));
     }
 }

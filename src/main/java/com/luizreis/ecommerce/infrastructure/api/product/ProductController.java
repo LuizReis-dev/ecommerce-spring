@@ -22,4 +22,7 @@ public interface ProductController {
 
     @GetMapping
     public ResponseEntity<List<Product>> getAll();
+
+    @GetMapping("/{categoryId}")
+    public ResponseEntity<List<Product>> getAllByCategoryID(@PathVariable Long categoryId);
 }

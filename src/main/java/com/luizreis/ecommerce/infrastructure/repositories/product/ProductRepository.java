@@ -1,8 +1,9 @@
 package com.luizreis.ecommerce.infrastructure.repositories.product;
 
 import com.luizreis.ecommerce.adapters.product.CreateProductAdapter;
+import com.luizreis.ecommerce.adapters.product.GetAllProductsAdapter;
+import com.luizreis.ecommerce.adapters.product.GetProductsByCategoryIdAdapter;
 import com.luizreis.ecommerce.core.domain.Product;
-import com.luizreis.ecommerce.core.usecases.product.GetAllProductsUseCase;
 import com.luizreis.ecommerce.infrastructure.entities.ProductEntity;
 import com.luizreis.ecommerce.infrastructure.mappers.ProductMapper;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class ProductRepository implements CreateProductAdapter, GetAllProductsUseCase {
+public class ProductRepository implements
+        CreateProductAdapter,
+        GetAllProductsAdapter,
+        GetProductsByCategoryIdAdapter {
 
     private final JpaProductRepository repository;
     private final ProductMapper mapper;
@@ -37,5 +41,14 @@ public class ProductRepository implements CreateProductAdapter, GetAllProductsUs
                 .map(mapper::entityToModel)
                 .collect(Collectors.toList());
 
+    }
+
+    @Override
+    public List<Product> getByCategory(Long categoryId) {
+        List<ProductEntity> productEntities = repository.findAllProductsByCategoryId(categoryId);
+        return productEntities
+                .stream()
+                .map(mapper::entityToModel)
+                .collect(Collectors.toList());
     }
 }
