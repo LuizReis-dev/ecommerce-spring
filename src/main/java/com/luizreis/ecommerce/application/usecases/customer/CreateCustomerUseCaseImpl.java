@@ -32,9 +32,11 @@ public class CreateCustomerUseCaseImpl implements CreateCustomerUseCase {
         if(newAddress == null)
             throw new AddressNotFoundException("Address not found for the ZipCode: " + customer.getAddress().getZipCode());
 
+        customer.getAddress().setZipCode(newAddress.getZipCode());
         customer.getAddress().setCity(newAddress.getCity());
         customer.getAddress().setStreet(newAddress.getStreet());
         customer.getAddress().setState(newAddress.getState());
+        customer.getAddress().setCountry("Brasil");
 
         return createCustomerAdapter.create(customer);
     }

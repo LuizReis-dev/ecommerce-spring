@@ -1,5 +1,6 @@
 package com.luizreis.ecommerce.infrastructure.api.auth;
 
+import com.luizreis.ecommerce.core.domain.exceptions.AddressNotFoundException;
 import com.luizreis.ecommerce.core.domain.exceptions.CustomerAlreadyExistsException;
 import com.luizreis.ecommerce.infrastructure.api.dtos.SignInRequest;
 import com.luizreis.ecommerce.infrastructure.api.dtos.SignupRequest;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public interface AuthenticationController {
 
     @PostMapping(value = "/signup")
-    public ResponseEntity<TokenResponse> signup(@Valid @RequestBody SignupRequest request) throws CustomerAlreadyExistsException;
+    public ResponseEntity<TokenResponse> signup(@Valid @RequestBody SignupRequest request) throws CustomerAlreadyExistsException, AddressNotFoundException;
 
     @PostMapping(value = "/signin")
     public ResponseEntity<TokenResponse> signIn(@Valid @RequestBody SignInRequest request);

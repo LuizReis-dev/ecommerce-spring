@@ -1,5 +1,6 @@
 package com.luizreis.ecommerce.infrastructure.api.auth;
 
+import com.luizreis.ecommerce.core.domain.exceptions.AddressNotFoundException;
 import com.luizreis.ecommerce.core.domain.exceptions.CustomerAlreadyExistsException;
 import com.luizreis.ecommerce.infrastructure.api.dtos.SignInRequest;
 import com.luizreis.ecommerce.infrastructure.api.dtos.SignupRequest;
@@ -21,7 +22,7 @@ public class AuthenticationControllerImpl implements AuthenticationController{
     }
 
     @Override
-    public ResponseEntity<TokenResponse> signup(SignupRequest request) throws CustomerAlreadyExistsException {
+    public ResponseEntity<TokenResponse> signup(SignupRequest request) throws CustomerAlreadyExistsException, AddressNotFoundException {
         return ResponseEntity.status(201).body(createUserUseCase.create(request));
     }
 
