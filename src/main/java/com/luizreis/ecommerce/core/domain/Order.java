@@ -1,6 +1,9 @@
 package com.luizreis.ecommerce.core.domain;
 
+import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Order {
@@ -9,7 +12,7 @@ public class Order {
     private Instant moment;
     private Customer customer;
     private OrderStatus status;
-
+    private List<OrderItem> orderItems = new ArrayList<>();
     public Order() {
     }
 
@@ -56,6 +59,20 @@ public class Order {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public Double getTotal(){
+        return getOrderItems().stream()
+                .mapToDouble(OrderItem::getTotal)
+                .sum();
     }
 
     @Override

@@ -1,10 +1,12 @@
 package com.luizreis.ecommerce.core.domain;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class OrderItem {
     private Product product;
     private Order order;
+    private Double total;
     private Integer quantity;
 
     public OrderItem() {
@@ -38,6 +40,14 @@ public class OrderItem {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     @Override
