@@ -20,7 +20,11 @@ public class ProductMapperImpl implements ProductMapper {
 
     @Override
     public ProductEntity modelToEntity(Product product) {
-        CategoryEntity categoryEntity = categoryMapper.modelToEntity(product.getCategory());
+        CategoryEntity categoryEntity = null;
+        if(product.getCategory() != null){
+            categoryEntity = categoryMapper.modelToEntity(product.getCategory());
+        }
+
         return new ProductEntity(product.getId(), product.getName(), product.getDescription(), product.getPrice(), categoryEntity, product.getCreatedAt());
     }
 
@@ -50,9 +54,12 @@ public class ProductMapperImpl implements ProductMapper {
         product.setCreatedAt(entity.getCreatedAt());
 
         Category category = new Category();
-        category.setId(entity.getCategory().getId());
-        category.setName(entity.getCategory().getName());
-        category.setDescription(entity.getCategory().getDescription());
+        if(entity.getCategory() != null){
+            category.setId(entity.getCategory().getId());
+            category.setName(entity.getCategory().getName());
+            category.setDescription(entity.getCategory().getDescription());
+        }
+
         product.setCategory(category);
 
         return product;

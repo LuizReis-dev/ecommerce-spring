@@ -3,6 +3,8 @@ package com.luizreis.ecommerce.infrastructure.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +20,9 @@ public class ProductEntity {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderItemEntity> items = new ArrayList<>();
     private Instant createdAt;
 
     public ProductEntity() {
@@ -86,6 +91,10 @@ public class ProductEntity {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<OrderItemEntity> getItems() {
+        return items;
     }
 
     @Override

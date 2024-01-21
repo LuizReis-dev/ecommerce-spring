@@ -2,6 +2,7 @@ package com.luizreis.ecommerce.infrastructure.repositories.product;
 
 import com.luizreis.ecommerce.adapters.product.CreateProductAdapter;
 import com.luizreis.ecommerce.adapters.product.GetAllProductsAdapter;
+import com.luizreis.ecommerce.adapters.product.GetProductByIdAdapter;
 import com.luizreis.ecommerce.adapters.product.GetProductsByCategoryIdAdapter;
 import com.luizreis.ecommerce.core.domain.Product;
 import com.luizreis.ecommerce.infrastructure.entities.ProductEntity;
@@ -16,7 +17,8 @@ import java.util.stream.Collectors;
 public class ProductRepository implements
         CreateProductAdapter,
         GetAllProductsAdapter,
-        GetProductsByCategoryIdAdapter {
+        GetProductsByCategoryIdAdapter,
+        GetProductByIdAdapter {
 
     private final JpaProductRepository repository;
     private final ProductMapper mapper;
@@ -50,5 +52,10 @@ public class ProductRepository implements
                 .stream()
                 .map(mapper::entityToModel)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Product getById(Long id) {
+        return mapper.entityToModel(repository.findById(id).orElse(null));
     }
 }
