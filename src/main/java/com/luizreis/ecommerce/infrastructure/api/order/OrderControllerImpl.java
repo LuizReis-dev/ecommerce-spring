@@ -10,6 +10,7 @@ import com.luizreis.ecommerce.infrastructure.api.dtos.OrderRequest;
 import com.luizreis.ecommerce.infrastructure.api.dtos.OrderResponse;
 import com.luizreis.ecommerce.infrastructure.mappers.OrderItemMapper;
 import com.luizreis.ecommerce.infrastructure.mappers.OrderMapper;
+import com.luizreis.ecommerce.infrastructure.security.usecases.GetAuthenticatedUserUseCase;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
@@ -20,11 +21,13 @@ import java.util.stream.Collectors;
 public class OrderControllerImpl implements OrderController{
 
     private final CreateOrderUseCase createOrderUseCase;
+    private final GetAuthenticatedUserUseCase getLoggedUserUseCase;
     private final OrderItemMapper orderItemMapper;
     private final OrderMapper orderMapper;
 
-    public OrderControllerImpl(CreateOrderUseCase createOrderUseCase, OrderItemMapper orderItemMapper, OrderMapper orderMapper) {
+    public OrderControllerImpl(CreateOrderUseCase createOrderUseCase, GetAuthenticatedUserUseCase getLoggedUserUseCase, OrderItemMapper orderItemMapper, OrderMapper orderMapper) {
         this.createOrderUseCase = createOrderUseCase;
+        this.getLoggedUserUseCase = getLoggedUserUseCase;
         this.orderItemMapper = orderItemMapper;
         this.orderMapper = orderMapper;
     }
@@ -33,8 +36,8 @@ public class OrderControllerImpl implements OrderController{
     public ResponseEntity<OrderResponse> create(OrderRequest request) throws CustomerNotFoundException, ProductNotFoundException {
 
         List<OrderItem> items = request.getItems().stream().map(orderItemMapper::requestToEntity).collect(Collectors.toList());
-        Customer customer = new Customer();
-        customer.setId(request.getCustomerId());
+        Customer customer = getLoggedUserUseCase.getAuthenticatedUser();
+
 
         Order order = createOrderUseCase.create(items, customer);
         return ResponseEntity.status(201).body(orderMapper.modelToResponse(order));

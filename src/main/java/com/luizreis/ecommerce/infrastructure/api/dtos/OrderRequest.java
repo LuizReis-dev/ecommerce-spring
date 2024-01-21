@@ -10,20 +10,16 @@ public class OrderRequest {
 
     @NotNull
     private List<OrderItemRequest> items;
-    @NotNull
-    private UUID customerId;
 
+    public OrderRequest() {
+    }
 
-    public OrderRequest(List<OrderItemRequest> items, UUID customerId) {
+    public OrderRequest(List<OrderItemRequest> items) {
         this.items = items;
-        this.customerId = customerId;
     }
 
     public List<OrderItemRequest> getItems() {
         return items;
     }
 
-    public UUID getCustomerId() {
-        return customerId;
-    }
 }
