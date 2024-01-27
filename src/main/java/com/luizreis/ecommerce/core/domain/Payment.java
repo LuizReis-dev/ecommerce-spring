@@ -10,6 +10,7 @@ public class Payment {
     private Order order;
     private PaymentMethod method;
     private PaymentStatus status;
+    private PixDetails pixDetails;
 
     public Payment() {
     }
@@ -67,6 +68,14 @@ public class Payment {
 
     public void setStatus(PaymentStatus status) {
         this.status = status;
+    }
+
+    public PixDetails getPixDetails() {
+        return pixDetails;
+    }
+
+    public void setPixDetails(PixDetails pixDetails) {
+        this.pixDetails = pixDetails;
     }
 
     @Override
