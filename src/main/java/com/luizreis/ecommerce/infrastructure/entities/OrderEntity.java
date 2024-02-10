@@ -25,6 +25,9 @@ public class OrderEntity {
     @OneToMany(mappedBy = "order")
     private List<OrderItemEntity> items = new ArrayList<>();
 
+    @OneToMany(mappedBy = "order")
+    private List<PaymentEntity> payments = new ArrayList<>();
+
     public OrderEntity() {
     }
 
@@ -81,6 +84,10 @@ public class OrderEntity {
 
     public void setItems(List<OrderItemEntity> items) {
         this.items = items;
+    }
+
+    public List<PaymentEntity> getPayments() {
+        return payments;
     }
 
     @Override
