@@ -23,7 +23,6 @@ public class CreatePixPaymentUseCaseImpl implements CreatePixPaymentUseCase {
 
     @Override
     public PixDetails create(Payment payment) throws OrderDoesntExistsException, PaymentNotAcceptedException {
-
         if(payment.getMethod() != PaymentMethod.PIX)
             throw new PaymentNotAcceptedException("Wrong payment method!");
 
@@ -40,6 +39,8 @@ public class CreatePixPaymentUseCaseImpl implements CreatePixPaymentUseCase {
         if(existingPayment != null && existingPayment.getStatus() != PaymentStatus.FAILED)
             throw new PaymentNotAcceptedException("There is already a payment for this order");
 
+        payment.setStatus(PaymentStatus.IN_PROGRESS);
         return createPixPaymentAdapter.create(payment);
+
     }
 }
