@@ -3,7 +3,7 @@ package com.luizreis.ecommerce.adapters.payment;
 import com.luizreis.ecommerce.core.domain.Order;
 import com.luizreis.ecommerce.core.domain.Payment;
 
-public interface GetPaymentByOrderAdapter {
+public interface GetLastPaymentByOrderAdapter {
 
-    Payment getPaymentByOrder(Order order);
+    Payment getLastPaymentByOrder(Order order);
 }
